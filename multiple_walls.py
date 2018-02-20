@@ -26,11 +26,8 @@ BLACK = (0, 0, 0)
     
 # Make a block
 block =  [200, 150, 50, 50]
-
-block_vx = 0
-block_vy = 0
-
-block_speed = 5
+vel = [0, 0]
+speed = 5
 
 # make a wall
 wall1 =  [300, 275, 200, 50]
@@ -56,42 +53,42 @@ while not done:
     left = state[pygame.K_LEFT]
     right = state[pygame.K_RIGHT]
 
-    if up:
-        block_vy = -block_speed
-    elif down:
-        block_vy = block_speed
-    else:
-        block_vy = 0
-        
     if left:
-        block_vx = -block_speed
+        vel[0]  = -speed
     elif right:
-        block_vx = block_speed
+        vel[0]  = speed
     else:
-        block_vx = 0
+        vel[0]  = 0
 
+    if up:
+        vel[1] = -speed
+    elif down:
+        vel[1]  = speed
+    else:
+        vel[1]  = 0
+        
         
     # Game logic (Check for collisions, update points, etc.)
     ''' move the block in horizontal direction '''
-    block[0] += block_vx
+    block[0] += vel[0]
 
     ''' resolve collisions '''
     for w in walls:
         if intersects.rect_rect(block, w):        
-            if block_vx > 0:
+            if vel[0]> 0:
                 block[0] = w[0] - block[2]
-            elif block_vx < 0:
+            elif vel[0] < 0:
                 block[0] = w[0] + w[2]
 
-    ''' move the block in horizontal direction '''
-    block[1] += block_vy
+    ''' move the block in vertical direction '''
+    block[1] += vel[1]
     
     ''' resolve collisions '''
     for w in walls:
         if intersects.rect_rect(block, w):                    
-            if block_vy > 0:
+            if vel[1] > 0:
                 block[1] = w[1] - block[3]
-            if block_vy < 0:
+            if vel[1] < 0:
                 block[1] = w[1] + w[3]
 
     

@@ -18,18 +18,47 @@ where (x, y) represents the coordinates of the upper left corner of
 the rectangle.
 """
 
-
 def point_circle(point, circle):
-    pass
+    a = point[0] - circle[0]
+    b = point[1] - circle[1]
+    r = circle[2]
 
-
+    return a**2 + b**2 <= r**2 
+    
 def point_rect(point, rect):
-    pass
+    x = point[0]
+    y = point[1]
 
+    left = rect[0]
+    right = rect[0] + rect[2]
+    top = rect[1]
+    bottom = rect[1] + rect[3]
+    
+    return left <= x <= right and top <= y <= bottom
 
 def circle_circle(circle1, circle2):
-    pass
+    a = circle1[0] - circle2[0]
+    b = circle1[1] - circle2[1]
+    radius_sum = circle1[2] + circle2[2]
 
+    return a**2 + b**2 <= radius_sum**2
 
 def rect_rect(rect1, rect2):
-    pass
+    left1 = rect1[0]
+    right1 = rect1[0] + rect1[2]
+    top1 = rect1[1]
+    bottom1 = rect1[1] + rect1[3]
+    
+    left2 = rect2[0]
+    right2 = rect2[0] + rect2[2]
+    top2 = rect2[1]
+    bottom2 = rect2[1] + rect2[3]
+
+
+    return not (right1 <= left2 or
+                right2 <= left1 or
+                bottom1 <= top2 or
+                bottom2 <= top1)
+
+
+
