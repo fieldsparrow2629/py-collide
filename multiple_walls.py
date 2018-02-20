@@ -33,8 +33,12 @@ speed = 5
 wall1 =  [300, 275, 200, 50]
 wall2 =  [400, 450, 200, 50]
 wall3 =  [100, 100, 50, 200]
+wall_top = [0,0,SIZE[0],50]
+wall_left =[0,0,50,SIZE[1]]
+wall_bot = [0,SIZE[1] - 50,SIZE[0],50]
+wall_right = [SIZE[0] - 50,0,50,SIZE[1]]
 
-walls = [wall1, wall2, wall3]
+walls = [wall1, wall2, wall3,wall_top,wall_left,wall_bot,wall_right]
 
 # Game loop
 done = False
